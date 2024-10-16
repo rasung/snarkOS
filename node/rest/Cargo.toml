@@ -65,7 +65,7 @@ path = "../router"
 version = "=3.0.0"
 
 [dependencies.snarkvm-synthesizer]
-path = "../../../snarkVM/synthesizer"
+#path = "../../../snarkVM/synthesizer"
 git = "https://github.com/rasung/snarkVM.git"
 rev = "16ab9fc"
 version = "=1.0.0"
