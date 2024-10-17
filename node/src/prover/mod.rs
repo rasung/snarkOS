@@ -213,7 +213,7 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
                 })
                 .await;
 
-                info!("*** 111 *** result : {} ", result);
+                info!("*** 111 *** result : {:?} ", result);
 
                 // If the prover found a solution, then broadcast it.
                 if let Ok(Some((solution_target, solution))) = result {
