@@ -117,7 +117,8 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
         )
         .await?;
         // Compute the maximum number of puzzle instances.
-        let max_puzzle_instances = num_cpus::get().saturating_sub(2).clamp(1, 6);
+        //let max_puzzle_instances = num_cpus::get().saturating_sub(2).clamp(1, 6);
+        let max_puzzle_instances = 1;
         // Initialize the node.
         let node = Self {
             router,
