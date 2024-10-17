@@ -213,6 +213,8 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
                 })
                 .await;
 
+                debug!("=== 999 === result : {} solution_target : {} solution : {}", result, solution_target, solution);
+
                 // If the prover found a solution, then broadcast it.
                 if let Ok(Some((solution_target, solution))) = result {
                     info!("Found a Solution '{}' (Proof Target {solution_target})", solution.id());
