@@ -282,6 +282,11 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
         self.puzzle_instances.fetch_add(1, Ordering::Relaxed);
         #[cfg(debug_assertions)]
         trace!("Number of Instances - {}", self.num_puzzle_instances());
+        debug!(
+            "== 55555 == num_puzzle_instances : {}",
+            self.num_puzzle_instances(),
+        );
+
     }
 
     /// Decrements the number of puzzle instances.
