@@ -239,6 +239,9 @@ impl<N: Network, C: ConsensusStorage<N>> Inbound<N> for Prover<N, C> {
         if let (Some(epoch_hash), Some(proof_target)) = (epoch_hash, proof_target) {
             // Ensure that the solution is valid for the given epoch.
             let puzzle = self.puzzle.clone();
+
+            println!("111111111111");
+
             let is_valid =
                 tokio::task::spawn_blocking(move || puzzle.check_solution(&solution, epoch_hash, proof_target)).await;
 

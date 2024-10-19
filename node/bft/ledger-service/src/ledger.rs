@@ -307,6 +307,8 @@ impl<N: Network, C: ConsensusStorage<N>> LedgerService<N> for CoreLedgerService<
         // Retrieve the current proof target.
         let proof_target = self.ledger.latest_proof_target();
 
+        println!("2222222222");
+
         // Ensure that the solution is valid for the given epoch.
         let puzzle = self.ledger.puzzle().clone();
         match spawn_blocking!(puzzle.check_solution(&solution, epoch_hash, proof_target)) {

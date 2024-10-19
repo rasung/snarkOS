@@ -425,6 +425,8 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
                 // Ensure that the solution is valid for the given epoch.
                 let puzzle = rest.ledger.puzzle().clone();
                 // Verify the solution in a blocking task.
+                println!("3333333333");
+
                 match tokio::task::spawn_blocking(move || puzzle.check_solution(&solution, epoch_hash, proof_target))
                     .await
                 {
