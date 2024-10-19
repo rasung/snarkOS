@@ -102,8 +102,6 @@ impl<N: Network, C: ConsensusStorage<N>> Reading for Prover<N, C> {
 
     /// Processes a message received from the network.
     async fn process_message(&self, peer_addr: SocketAddr, message: Self::Message) -> io::Result<()> {
-        println!("process_message : {:?}", message);
-
         // Process the message. Disconnect if the peer violated the protocol.
         if let Err(error) = self.inbound(peer_addr, message).await {
             if let Some(peer_ip) = self.router().resolve_to_listener(&peer_addr) {
@@ -238,11 +236,11 @@ impl<N: Network, C: ConsensusStorage<N>> Inbound<N> for Prover<N, C> {
         // Retrieve the latest proof target.
         let proof_target = self.latest_block_header.read().as_ref().map(|header| header.proof_target());
 
+        println!("1111 unconfirmed_solution -> epoch_hash : {} proof_target : {}", epoch_hash, proof_target);
+
         if let (Some(epoch_hash), Some(proof_target)) = (epoch_hash, proof_target) {
             // Ensure that the solution is valid for the given epoch.
             let puzzle = self.puzzle.clone();
-
-            println!("111111111111");
 
             let is_valid =
                 tokio::task::spawn_blocking(move || puzzle.check_solution(&solution, epoch_hash, proof_target)).await;
