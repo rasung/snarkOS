@@ -303,7 +303,6 @@ impl<N: Network, C: ConsensusStorage<N>> Inbound<N> for Client<N, C> {
             // Ensure that the solution is valid for the given epoch.
             let puzzle = self.puzzle.clone();
 
-            println!("44444444444");
 
             let is_valid =
                 tokio::task::spawn_blocking(move || puzzle.check_solution(&solution, epoch_hash, proof_target)).await;

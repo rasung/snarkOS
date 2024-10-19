@@ -256,6 +256,8 @@ pub trait Inbound<N: Network>: Reading + Outbound<N> {
                 if message.solution_id != solution.id() {
                     bail!("Peer '{peer_ip}' is not following the 'UnconfirmedSolution' protocol")
                 }
+                println!("222222");
+
                 // Handle the unconfirmed solution.
                 match self.unconfirmed_solution(peer_ip, serialized, solution).await {
                     true => Ok(()),
