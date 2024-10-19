@@ -102,7 +102,7 @@ impl<N: Network, C: ConsensusStorage<N>> Reading for Prover<N, C> {
 
     /// Processes a message received from the network.
     async fn process_message(&self, peer_addr: SocketAddr, message: Self::Message) -> io::Result<()> {
-        println!("process_message : {}", message);
+        println!("process_message : {:?}", message);
 
         // Process the message. Disconnect if the peer violated the protocol.
         if let Err(error) = self.inbound(peer_addr, message).await {
