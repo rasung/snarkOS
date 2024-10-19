@@ -256,8 +256,8 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
                 self.puzzle.get_proof_target(&solution).ok().map(|solution_target| (solution_target, solution))
             });
 
-        println!("compute result : {}", result);
-        
+        println!("compute result : {:?}", result);
+
         // Decrement the puzzle instances.
         self.decrement_puzzle_instances();
         // Return the result.
