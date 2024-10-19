@@ -252,9 +252,12 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
         // Compute the solution.
         let result =
             self.puzzle.prove(epoch_hash, self.address(), rng.gen(), Some(proof_target)).ok().and_then(|solution| {
+                println!("prove() -> solution : {}", solution);
                 self.puzzle.get_proof_target(&solution).ok().map(|solution_target| (solution_target, solution))
             });
 
+        println!("compute result : {}", result);
+        
         // Decrement the puzzle instances.
         self.decrement_puzzle_instances();
         // Return the result.
