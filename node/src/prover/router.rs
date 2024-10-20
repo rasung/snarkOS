@@ -236,7 +236,7 @@ impl<N: Network, C: ConsensusStorage<N>> Inbound<N> for Prover<N, C> {
         // Retrieve the latest proof target.
         let proof_target = self.latest_block_header.read().as_ref().map(|header| header.proof_target());
 
-        println!("1111 unconfirmed_solution -> epoch_hash : {:?} proof_target : {}", epoch_hash, proof_target.unwrap_or_default());
+        // println!("1111 unconfirmed_solution -> epoch_hash : {:?} proof_target : {}", epoch_hash, proof_target.unwrap_or_default());
 
         if let (Some(epoch_hash), Some(proof_target)) = (epoch_hash, proof_target) {
             // Ensure that the solution is valid for the given epoch.
