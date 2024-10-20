@@ -105,6 +105,8 @@ pub trait Outbound<N: Network>: Writing<Message = Message<N>> {
         // Prepare the peers to send to.
         let connected_peers = self.router().connected_peers();
         let peers = connected_peers.iter().filter(|peer_ip| !excluded_peers.contains(peer_ip));
+        
+        println!("propagate");
 
         // Iterate through all peers that are not the sender and excluded peers.
         for peer_ip in peers {
