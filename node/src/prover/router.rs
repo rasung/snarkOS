@@ -251,8 +251,6 @@ impl<N: Network, C: ConsensusStorage<N>> Inbound<N> for Prover<N, C> {
                     let message = Message::UnconfirmedSolution(serialized);
                     // Propagate the "UnconfirmedSolution".
                     self.propagate(message, &[peer_ip]);
-                    println!("unconfirmed_solution -> propagate");
-
                 }
                 Ok(Err(_)) => {
                     trace!("Invalid solution '{}' for the proof target.", solution.id())
