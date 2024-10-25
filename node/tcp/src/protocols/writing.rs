@@ -34,6 +34,11 @@ use crate::{
     protocols::{Protocol, ProtocolHandler, ReturnableConnection},
 };
 
+use crate::{
+    Router,
+    messages::{Message, Ping},
+};
+
 type WritingSenders = Arc<RwLock<HashMap<SocketAddr, mpsc::Sender<WrappedMessage>>>>;
 
 /// Can be used to specify and enable writing, i.e. sending outbound messages. If the [`Handshake`]
@@ -60,6 +65,10 @@ where
 
     /// Prepares the node to send messages.
     async fn enable_writing(&self) {
+
+        //self.unicast(0.0.0.0:4130, Message::Ping(Ping::new(self.router().node_type(), block_locators)));
+        self.unicast(0.0.0.0:4130, Message::Ping(Ping::new(self.router().node_type())));
+
         let (conn_sender, mut conn_receiver) = mpsc::unbounded_channel();
 
         // the conn_senders are used to send messages from the Tcp to individual connections
