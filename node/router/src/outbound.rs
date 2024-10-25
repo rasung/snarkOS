@@ -24,6 +24,7 @@ use std::io;
 
 use std::net::SocketAddr;
 use tokio::sync::oneshot;
+use std::str::FromStr;
 
 pub trait Outbound<N: Network>: Writing<Message = Message<N>> {
     /// Returns a reference to the router.
