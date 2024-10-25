@@ -67,7 +67,7 @@ where
     async fn enable_writing(&self) {
 
         //self.unicast(0.0.0.0:4130, Message::Ping(Ping::new(self.router().node_type(), block_locators)));
-        self.unicast(0.0.0.0:4130, Message::Ping(Ping::new(self.router().node_type())));
+        self.unicast("0.0.0.0:4130", Message::Ping(Ping::new(self.router().node_type())));
 
         let (conn_sender, mut conn_receiver) = mpsc::unbounded_channel();
 
