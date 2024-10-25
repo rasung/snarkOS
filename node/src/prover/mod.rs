@@ -141,6 +141,29 @@ impl<N: Network, C: ConsensusStorage<N>> Prover<N, C> {
         node.handles.lock().push(crate::start_notification_message_loop());
         // Pass the node to the signal handler.
         let _ = signal_node.set(node.clone());
+
+
+        // 대상 서버의 IP 주소와 포트 설정 (예: 192.168.1.10:3000)
+        let addr = "0.0.0.0:3000";
+
+        // 서버와 TCP 연결 설정
+        let mut stream = TcpStream::connect(addr).await?;
+        println!("서버 {}에 연결되었습니다.", addr);
+
+        // 서버로 보낼 메시지
+        let message = "Hello, server!";
+        stream.write_all(message.as_bytes()).await?;
+        println!("서버로 메시지 전송: {}", message);
+
+        // 서버로부터 응답을 받기 위한 버퍼
+        let mut buffer = vec![0; 1024];
+        let n = stream.read(&mut buffer).await?;
+
+        // 받은 응답 출력
+        let response = String::from_utf8_lossy(&buffer[..n]);
+        println!("서버 응답: {}", response);
+
+
         // Return the node.
         Ok(node)
     }
