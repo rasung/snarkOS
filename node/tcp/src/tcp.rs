@@ -306,8 +306,6 @@ impl Tcp {
         let listener_ip =
             self.config().listener_ip.expect("Tcp::enable_listener was called, but Config::listener_ip is not set");
             
-        println!("=== 12345 ===");
-
         // Initialize the TCP listener.
         let listener = self.create_listener(listener_ip).await?;
 
