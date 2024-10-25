@@ -59,6 +59,7 @@ use std::{
 use tokio::task::JoinHandle;
 use tokio::net::TcpStream;
 use tokio::io::AsyncReadExt;
+use tokio::io::AsyncWriteExt;
 
 /// A prover is a light node, capable of producing proofs for consensus.
 #[derive(Clone)]
