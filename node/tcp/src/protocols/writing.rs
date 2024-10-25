@@ -34,11 +34,6 @@ use crate::{
     protocols::{Protocol, ProtocolHandler, ReturnableConnection},
 };
 
-use crate::{
-    Router,
-    messages::{Message, Ping},
-};
-
 type WritingSenders = Arc<RwLock<HashMap<SocketAddr, mpsc::Sender<WrappedMessage>>>>;
 
 /// Can be used to specify and enable writing, i.e. sending outbound messages. If the [`Handshake`]
