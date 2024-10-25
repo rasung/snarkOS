@@ -50,9 +50,9 @@ pub trait Outbound<N: Network>: Writing<Message = Message<N>> {
     /// which can be used to determine when and whether the message has been delivered.
     fn send(&self, peer_ip: SocketAddr, message: Message<N>) -> Option<oneshot::Receiver<io::Result<()>>> {
         // Determine whether to send the message.
-        // if !self.can_send(peer_ip, &message) {
-        //     return None;
-        // }
+        if !self.can_send(peer_ip, &message) {
+            return None;
+        }
         // Resolve the listener IP to the (ambiguous) peer address.
         let peer_addr = match self.router().resolve_to_ambiguous(&peer_ip) {
             Some(peer_addr) => peer_addr,
